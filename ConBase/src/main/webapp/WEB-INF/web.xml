@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/servlet-context.xml
+					 /WEB-INF/spring/security-config.xml
+					 classpath:spring-support-contexts.xml
+					 classpath:web-app-context.xml
+		</param-value>
+	</context-param>
+
+	<listener>
+    	<listener-class>com.derive.conbase.security.ConbaseContextLoader</listener-class>
+	</listener>
+
+	<!-- Enables Spring Dispatcher-->	
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value></param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Enables Spring Security -->
+	<filter>
+	  <filter-name>springSecurityFilterChain</filter-name>
+	  <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	
+	<filter-mapping>
+	  <filter-name>springSecurityFilterChain</filter-name>
+	  <url-pattern>/*</url-pattern>
+	</filter-mapping>	
+	
+	<!-- The session-timeout element defines the default session timeout interval 
+		for all sessions created in this web application. The specified timeout must 
+		be expressed in a whole number of minutes. If the timeout is 0 or less, the 
+		container ensures the default behaviour of sessions is never to time out. 
+		If this element is not specified, the container must set its default timeout 
+		period. -->
+	<session-config>
+		<!-- Session to time out after 30 minutes -->
+		<session-timeout>120</session-timeout>
+	</session-config>
+
+		<!-- - - - - - Error Page configuration - - - - - -->
+
+	<!-- Service Unavailable - The server is currently unavailable (because it is overloaded or down for maintenance). -->
+	<error-page>
+		<error-code>503</error-code>
+		<location>/httpError</location>
+	</error-page>
+
+	<!-- Bad Request - The request cannot be fulfilled due to bad syntax -->
+	<error-page>
+		<error-code>400</error-code>
+		<location>/httpError</location>
+	</error-page>
+
+	<!-- Internal Server Error - A generic error message, given when no more specific message is suitable. -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/httpError</location>
+	</error-page>
+
+	<!-- Forbidden - The request was a legal request, but the server is refusing to respond to it. Unlike a 401 Unauthorised response, authenticating will make no difference. -->
+	<error-page>
+		<error-code>403</error-code>
+		<location>/accessDenied</location>
+	</error-page>
+
+	<!-- Not Found - The requested resource could not be found but may be available again in the future. Subsequent requests by the client are permissible. -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/httpError</location>
+	</error-page>
+	
+	<!-- Catch all other exceptions -->
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/applicationError</location>
+	</error-page>
+	
+</web-app>

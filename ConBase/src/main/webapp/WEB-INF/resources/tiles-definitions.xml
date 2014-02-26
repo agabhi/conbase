@@ -1,0 +1,40 @@
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+	
+	<definition name="login" template="/WEB-INF/views/login.jsp">
+	</definition>
+	
+	<definition name="userConfirm" template="/WEB-INF/views/userConfirm.jsp">
+	</definition>
+	
+	<definition name="home" template="/WEB-INF/layout/layout.jsp">
+		<put-attribute name="title" value="ConBase" />
+		<put-attribute name="content" value="/WEB-INF/views/index.jsp" />
+	</definition>
+	
+	<definition name="structureDesign" template="/WEB-INF/layout/layout.jsp">
+		<put-attribute name="title" value="ConBase - Structure Design" />
+		<put-attribute name="content" value="/WEB-INF/views/structureDesign.jsp" />
+	</definition>
+	
+	<definition name="structures" template="/WEB-INF/layout/layout.jsp">
+		<put-attribute name="title" value="ConBase - Structures" />
+		<put-attribute name="content" value="/WEB-INF/views/structures.jsp" />
+	</definition>
+	
+	<definition name="layers" template="/WEB-INF/layout/layout.jsp">
+		<put-attribute name="title" value="ConBase - Layers" />
+		<put-attribute name="content" value="/WEB-INF/views/layers.jsp" />
+	</definition>
+	
+	<definition name="recordTypes" template="/WEB-INF/layout/layout.jsp">
+		<put-attribute name="title" value="ConBase - Record Types" />
+		<put-attribute name="content" value="/WEB-INF/views/recordTypes.jsp" />
+	</definition>
+	
+	<definition name="userHome" template="/WEB-INF/layout/layout.jsp">
+		<put-attribute name="title" value="ConBase - Home" />
+		<put-attribute name="content" value="/WEB-INF/views/userHome.jsp" />
+	</definition>
+
+</tiles-definitions>
