@@ -36,13 +36,26 @@ public class BarchartService {
 			barchart.setRecordTypeAttribute(recordTypeDAO.findRecordTypeAttributeById(barchart.getRecordTypeAttribute().getId()));
 		}
 		if (barchart != null && CollectionUtils.isNotEmpty(barchart.getLayerAttributeConfigs())) {
-			Set<Long> layerConfigIds = new HashSet<Long>();
+			List<Long> layerConfigIds = new ArrayList<Long>();
 			for (LayerAttributeConfig lac : barchart.getLayerAttributeConfigs()) {
 				if (lac != null && lac.getId() != null) {
 					layerConfigIds.add(lac.getId());
 				}
 			}
-			barchart.setLayerAttributeConfigs(layerDAO.findLayerAttributeConfigsByConfigIds(new ArrayList<Long>(layerConfigIds)));
+			List<LayerAttributeConfig> layerAttributeConfigs = layerDAO.findLayerAttributeConfigsByConfigIds(layerConfigIds);
+			if (CollectionUtils.isNotEmpty(layerAttributeConfigs)) {
+				List<LayerAttributeConfig> sortedList = new ArrayList<LayerAttributeConfig>();
+				for (Long configId : layerConfigIds) {
+					for (LayerAttributeConfig lac : layerAttributeConfigs) {
+						if (lac.getId().equals(configId)) {
+							sortedList.add(lac);
+							break;
+						}
+					}
+				}
+				barchart.setLayerAttributeConfigs(sortedList);
+			}
+			
 		}
 		return barchart;
 	}

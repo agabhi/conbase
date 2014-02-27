@@ -1,25 +1,47 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@page import="com.derive.conbase.security.User, org.springframework.security.core.context.SecurityContextHolder" %>
+
 <body ng-app="indexApp" ng-controller="IndexController">
 <div id="wrap">
-    <%@ include file="../layout/includeHomepageHeader.jsp"%>
+    <header id="header" class="navbar home-page-header">
+       <div class="clearfix">
+           <ul class="pull-left clearfix" style="margin: 0px;">
+               <li class="pull-right" style="padding-right: 10px;"><a href="<%=request.getContextPath() %>/userHome">Home</a></li>
+           </ul>
+           <ul class="pull-right clearfix" style="margin: 0px;">
+               <sec:authorize ifAnyGranted="ROLE_ANONYMOUS">
+               		<li class="pull-right" style="padding-left: 10px;"><a  href="<%=request.getContextPath() %>/login">Login</a></li>
+               </sec:authorize>
+               <sec:authorize ifNotGranted="ROLE_ANONYMOUS">
+               <li class="pull-right" style="padding-left: 10px;"><a  href="<%=request.getContextPath() %>/j_spring_security_logout">Logout</a></li>
+               <li class="pull-right" style="padding-left: 10px;">
+               <div style="padding:3px 0px;">
+               	<span class="glyphicon glyphicon-user"></span>
+                   <%=((com.derive.conbase.security.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser().getFullName()%>
+                </div>
+               </li>
+               </sec:authorize>
+           </ul>
+       </div>
+    </header>
     <section id="content" class="no-border">
         <div class="row row-padder home-center-box" style="padding-top: 40px;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-7" style="color: white">
-                        <img src="<%=request.getContextPath()%>/assets/img/logo2.png"/>
+                        <img src="<%=request.getContextPath()%>/assets/img/infraCMSlogo.png"/>
 
-                        <h1 style="margin-bottom: 20px;margin-top: 40px;">Management and monitoring system for construction projects</h1>
+                        <h1 style="margin-bottom: 30px;margin-top: 40px;">Record management for construction projects</h1>
                         <ul>
-                            <li style="font-size: 2.5em;font-weight: 200;list-style:disc inside ;margin-bottom: 15px;">Roads & Canals</li>
-                            <li style="font-size: 2.5em;font-weight: 200;list-style:disc inside ;margin-bottom: 15px;">Bridges</li>
-                            <li style="font-size: 2.5em;font-weight: 200;list-style:disc inside ;margin-bottom: 15px;">Buildings</li>
-                            <li style="font-size: 2.5em;font-weight: 200;list-style:disc inside ;margin-bottom: 15px;">Hangers</li>
+                            <li style="font-size: 2.0em;font-weight: 200;list-style:none ;margin-bottom: 15px;color:#B3D8FF"><span class="glyphicon glyphicon-ok"></span><div style="display:inline-block;margin-left:10px;">Get free from scattered excel spreadsheets.</div></li>
+                            <li style="font-size: 2.0em;font-weight: 200;list-style:none ;margin-bottom: 15px;color:#B3D8FF"><span class="glyphicon glyphicon-ok"></span><div style="display:inline-block;margin-left:10px;">Collaborate with multiple users.</div></li>
+                            <li style="font-size: 2.0em;font-weight: 200;list-style:none ;margin-bottom: 15px;color:#B3D8FF"><span class="glyphicon glyphicon-ok"></span><div style="display:inline-block;margin-left:10px;">Store you records in the cloud with ensured backup.</div></li>
+                            <li style="font-size: 2.0em;font-weight: 200;list-style:none ;margin-bottom: 15px;color:#B3D8FF"><span class="glyphicon glyphicon-ok"></span><div style="display:inline-block;margin-left:10px;">Monitor data with layer charts.</div></li>
                         </ul>
                     </div>
                     <div class="col-md-5" style="color: white">
                         <ul style="margin-bottom: 110px;">
                             <li class="nav-link"><a href="#">Home</a></li>
-                            <li class="nav-link"><a href="#">Features</a></li>
                             <li class="nav-link"><a href="#">Pricing</a></li>
                             <li class="btn btn-warning">Signup</li>
                         </ul>
@@ -42,7 +64,7 @@
                                 <div class="error" ng-show="showValidationErrors && registrationForm.password.$error.minlength">Password should have atleast 6 characters.</div>
                             </div>
                             <button type="button" ng-click="register()" class="btn btn-warning btn-lg btn-block" style="height:60px;font-size: 18px;">Get Started For Free</button>
-                            <h4>By signing up you agree to our Terms & Service</h4>
+                            <h5 style="display:none">By signing up you agree to our <a href="javascript:void(0)" style="color:#B3D8FF">Terms & Service</a></h5>
                         </form>
                     </div>
                 </div>
@@ -52,23 +74,41 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6" style="font-size: 14px;">
-                        <h3 style="font-weight: bold">Monitor layers</h3>
-                        <p>ConBase creates layer charts for length based constructions such as roads & canals. The charts gets auto generated from the input data.</p>
-                        <p>With the help of these charts you can easily locate gaps in the construction and monitor the work done on any given stretch.</p>
+                        <h3 style="font-weight: bold;color:#326bb1;;"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Get free from scattered excel</h3>
+                        <div style="color:#4b4b4b">
+	                        <p>InfraCMS allows you to allows you to create custom records online. You will now never need to maintain your data in the excel. However, you can export the records in excel format at any point of time.</p>
+	                    </div>
                     </div>
                     <div class="col-md-6" style="font-size: 14px;">
-                        <h3 style="font-weight: bold">Monitor structures</h3>
-                        <p>Easy to mock the structural drawings, which can be easily associated with input data. It enables you to quick assess the development status of the structure.</p>
+                        <h3 style="font-weight: bold;color:#326bb1;;"><span class="glyphicon glyphicon-road"></span>&nbsp;&nbsp;Monitor Layers</h3>
+                        <div style="color:#4b4b4b">
+	                        <p>InfraCMS creates layer charts for length based constructions such as roads & canals. The charts gets auto generated from the input data.</p>
+	                        <p>With the help of these charts you can easily locate gaps in the construction and monitor the work done on any given stretch.</p>
+	                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" style="font-size: 14px;">
+                        <h3 style="font-weight: bold;color:#326bb1;;"><span class="glyphicon glyphicon-cloud"></span>&nbsp;&nbsp;Web based in the cloud</h3>
+                        <div style="color:#4b4b4b">
+	                        <p>With InfraCMS, you get web based access to your records. You can access them just from anywhere in the world where you have a PC or mobile with the internet connection.</p>
+	                    </div>
+                    </div>
+                    <div class="col-md-6" style="font-size: 14px;">
+                        <h3 style="font-weight: bold;color:#326bb1;;"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Collaborate</h3>
+                        <div style="color:#4b4b4b">
+                        	<p>Add multiple users to your project, so that they can work along with you on the project.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
     </section>
-    <footer id="footer">
+    <footer id="footer" >
         <div class="container">
-            <img src="<%=request.getContextPath()%>/assets/img/logo2.png" height="40"/>
-            &copy; Copyright ConBase 2013 | All Rights Reserved
+            <img src="<%=request.getContextPath()%>/assets/img/logodark.png" height="40"/>
+            &copy; infraCMS 2014 | All Rights Reserved
         </div>
     </footer>
 </div> 

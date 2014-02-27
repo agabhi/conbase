@@ -1882,8 +1882,9 @@ recordTypesApp.controller('CreateBarchartController', function ($scope, $http, p
 						layerAttributeMap[layerAttribute.attribute.id] = layerAttribute.attribute;
 					});
 					layer.layerAttributeMap = layerAttributeMap;
-					$scope.barchart.layerAttributeConfigs.push(layerAttributeConfig);
 				}
+				$scope.barchart.layerAttributeConfigs.push(layerAttributeConfig);
+				
 			}
 		});
 	};

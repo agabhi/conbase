@@ -261,7 +261,7 @@ header.navbar {
 }
 
 .home-center-box {
-    background-image: url("../img/home_bkg.jpg");
+    background-image: url("../img/barchart1.png");
     min-height:616px;
 }
 
@@ -275,8 +275,8 @@ header.navbar {
 
 #footer {
     padding: 30px 0px;
-    box-shadow: inset 0px 1px 6px rgba(0,0,0,0.5);
-    background: #353535;
+    box-shadow: inset 0px 1px 0px rgba(0,0,0,0.5);
+	background: #E9ECEE;
 }
 
 .signup-box {
@@ -558,4 +558,19 @@ button.minus, button.plus {
 
 button.plus {
 	background-image: url(../img/iplus.png);
+}
+
+header.navbar.home-page-header {
+	min-height:inherit;padding:10px 10px;
+	background: #222222;
+}
+
+.home-page-header {
+	color: #ccc;
+}
+.home-page-header a {
+	padding: 3px 0px;
+display: inline-block;
+font-size: 12px;
+color: #ccc;
 }

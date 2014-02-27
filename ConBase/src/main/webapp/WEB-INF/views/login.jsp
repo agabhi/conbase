@@ -26,7 +26,7 @@
             <div class="container">
                 <div class="row" style="position: relative;">
                     <div class="col-xs-12 text-center" style="">
-                        <img src="<%=request.getContextPath()%>/assets/img/logo2.png"/>
+                        <img src="<%=request.getContextPath()%>/assets/img/logodark.png"/>
                     </div>
                     <div class="col-xs-12" style="position: absolute;top:110px">
                         <div class="col-sm-5 signup-box" style="margin: auto;float:none;padding: 20px;">
@@ -64,8 +64,8 @@
 </div>
 <footer id="footer">
     <div class="container">
-        <img src="<%=request.getContextPath()%>/assets/img/logo2.png" height="40"/>
-        &copy; Copyright ConBase 2013 | All Rights Reserved
+        <img src="<%=request.getContextPath()%>/assets/img/logodark.png" height="40"/>
+        &copy; infraCMS 2014 | All Rights Reserved
     </div>
 </footer>
 </body>
