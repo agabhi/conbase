@@ -9,6 +9,7 @@
 		<intercept-url pattern="/structure-design" access="hasRole('admin')"  />
 	    <intercept-url pattern="/assets/**" access="permitAll" />
 	    <intercept-url pattern="/confirmuser" access="permitAll"  />
+	    <intercept-url pattern="/pricing" access="permitAll"  />
 	    <intercept-url pattern="/register" access="permitAll"  />
 	    <intercept-url pattern="/login" access="permitAll"  />
 	    <intercept-url pattern="/" access="permitAll"  />

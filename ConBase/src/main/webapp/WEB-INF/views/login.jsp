@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ConBase</title>
+    <title>infraCMS - Record Management</title>
 </head>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/bootstrap.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/font-awesome.min.css">
@@ -24,6 +24,12 @@
     <section id="content" class="no-border">
         <div class="row row-padder" style="padding-top: 40px;background: #F1F0E8;height: 200px;">
             <div class="container">
+            	<div class="row">
+                <ul style="margin-left:20px;">
+                            <li class="nav-link"><a  style="color:#b27503;" href="<%=request.getContextPath()%>/">Home</a></li>
+                            <li class="nav-link"><a style="color:#b27503;" href="<%=request.getContextPath()%>/pricing">Pricing</a></li>
+                </ul>
+                </div>
                 <div class="row" style="position: relative;">
                     <div class="col-xs-12 text-center" style="">
                         <img src="<%=request.getContextPath()%>/assets/img/logodark.png"/>

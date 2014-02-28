@@ -61,14 +61,14 @@ public class UserController {
 				
 				StringBuffer message = new StringBuffer("");
 				
-				message.append("Dear ").append(user.getFullName()).append(",<p style='margin-top:10px;'>Congratulations! You have successfully registered for Conbase. Please activate your account by clicking on the link below. If the link is not working, you can copy the below url address in your browser.</p>");
-				message.append("<p style='margin-top:10px;'><a href='http://www.conbase.com/confirmuser?id="+user.getConfirmationIdentifier()+"'>Click here to activate</a></p>");
-				message.append("<p>http://www.conbase.com/confirmuser?id=").append(user.getConfirmationIdentifier()).append("</p>");
+				message.append("Dear ").append(user.getFullName()).append(",<p style='margin-top:10px;'>Congratulations! You have successfully registered for infraCMS. Please activate your account by clicking on the link below. If the link is not working, you can copy the below url address in your browser.</p>");
+				message.append("<p style='margin-top:10px;'><a href='http://www.infracms.com/confirmuser?id="+user.getConfirmationIdentifier()+"'>Click here to activate</a></p>");
+				message.append("<p>http://www.infracms.com/confirmuser?id=").append(user.getConfirmationIdentifier()).append("</p>");
 				message.append("<p style='margin-top:10px;'>You can create a free trial project now and start managing your records online. For any queries or support, please feel free to contact +91-7895988251. We also provide one time data setup support also.</p>");
-				message.append("<p style='margin-top:10px;margin-bottom:0px;'>Best Wishes,</p><p>Conbase Team</p>");
+				message.append("<p style='margin-top:10px;margin-bottom:0px;'>Best Wishes,</p><p>infraCMS Team</p>");
 				
 				
-				new EmailSender().sendMail(new String[] {user.getEmail()}, "Welcome to Conbase!!",message.toString());
+				new EmailSender().sendMail(new String[] {user.getEmail()}, "Welcome to infraCMS!!",message.toString());
 			}
 		} else {
 			output.setSuccess(false);

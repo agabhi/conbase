@@ -154,23 +154,23 @@ public class ProjectController {
 						User user = userService.findUserByEmailId(email.trim());
 						if (user != null) {
 							projectService.addUserToProject(user.getId(), projectId);
-							String subject = "Conbase - You have been added to the project - "+project.getName()+".";
+							String subject = "infraCMS - You have been added to the project - "+project.getName()+".";
 							StringBuffer message = new StringBuffer();
 							message.append("<p>Dear User,</p>");
 							message.append("<p style='margin-top:10px;'>You have been added to work on the project ").append(project.getName()+".</p>");
-							message.append("<p>To work on the project, please go to your Conbase home page and click on the Project->Go button.</p>");
+							message.append("<p>To work on the project, please go to your infraCMS home page and click on the Project->Go button.</p>");
 							message.append("<p style='margin-top:10px;margin-bottom:0px;'>Best wishes,</p>");
-							message.append("<p>Conbase Team</p>");
+							message.append("<p>infraCMS Team</p>");
 							new EmailSender().sendMail(new String[] {email}, subject, message.toString());
 							output.setOutput("complete");
 						} else {
-							String subject = "Conbase - You have been added to the project - "+project.getName()+".";
+							String subject = "infraCMS - You have been added to the project - "+project.getName()+".";
 							StringBuffer message = new StringBuffer();
 							message.append("<p>Dear User,</p>");
 							message.append("<p style='margin-top:10px;'>You have been added to work on the project ").append(project.getName()+".</p>");
-							message.append("<p>To work on the project, you need to register on http://www.conbase.com. After registering, please go to your Conbase home page and click on the Project->Go button.</p>");
+							message.append("<p>To work on the project, you need to register on http://www.infracms.com. After registering, please go to your infraCMS home page and click on the Project->Go button.</p>");
 							message.append("<p style='margin-top:10px;margin-bottom:0px;'>Best wishes,</p>");
-							message.append("<p>Conbase Team</p>");
+							message.append("<p>infraCMS Team</p>");
 							new EmailSender().sendMail(new String[] {email}, subject, message.toString());
 							output.setOutput("pending");
 						}

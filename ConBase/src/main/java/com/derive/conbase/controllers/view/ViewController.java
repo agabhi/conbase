@@ -33,6 +33,13 @@ public class ViewController {
 	}
 	
 	@Transactional
+	@RequestMapping(value = "/pricing", method = RequestMethod.GET)
+	public String pricing(Model model, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		return "pricing";
+	}
+	
+	@Transactional
 	@RequestMapping(value = "/structures", method = RequestMethod.GET)
 	public String structures(Model model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {

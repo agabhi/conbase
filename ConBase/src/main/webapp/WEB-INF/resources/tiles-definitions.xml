@@ -4,6 +4,9 @@
 	<definition name="login" template="/WEB-INF/views/login.jsp">
 	</definition>
 	
+	<definition name="pricing" template="/WEB-INF/views/pricing.jsp">
+	</definition>
+	
 	<definition name="userConfirm" template="/WEB-INF/views/userConfirm.jsp">
 	</definition>
 	

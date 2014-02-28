@@ -2,6 +2,13 @@
 <%@page import="com.derive.conbase.security.User, org.springframework.security.core.context.SecurityContextHolder" %>
 
 <body ng-app="indexApp" ng-controller="IndexController">
+
+<!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+mixpanel.init("6411320877c544bbe9300a582363f525");</script><!-- end Mixpanel -->
+
+
 <div id="wrap">
     <header id="header" class="navbar home-page-header">
        <div class="clearfix">
@@ -41,8 +48,8 @@
                     </div>
                     <div class="col-md-5" style="color: white">
                         <ul style="margin-bottom: 110px;">
-                            <li class="nav-link"><a href="#">Home</a></li>
-                            <li class="nav-link"><a href="#">Pricing</a></li>
+                            <li class="nav-link"><a href="<%=request.getContextPath()%>/">Home</a></li>
+                            <li class="nav-link"><a href="<%=request.getContextPath()%>/pricing">Pricing</a></li>
                             <li class="btn btn-warning">Signup</li>
                         </ul>
                         <form role="form" name="registrationForm" method="POST">
@@ -64,6 +71,7 @@
                                 <div class="error" ng-show="showValidationErrors && registrationForm.password.$error.minlength">Password should have atleast 6 characters.</div>
                             </div>
                             <button type="button" ng-click="register()" class="btn btn-warning btn-lg btn-block" style="height:60px;font-size: 18px;">Get Started For Free</button>
+                            <h6>Works on IE9 & above, Mozilla, Chrome, Safari & Opera</h6>
                             <h5 style="display:none">By signing up you agree to our <a href="javascript:void(0)" style="color:#B3D8FF">Terms & Service</a></h5>
                         </form>
                     </div>
@@ -135,7 +143,7 @@
     </div>
   </div>
 </div>
-
+<script>mixpanel.track("Index page loaded");</script>
 </body>
 <script src="<%=request.getContextPath()%>/assets/js/jquery-1.9.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/assets/js/bootstrap.min.js"></script>
@@ -146,6 +154,7 @@ var indexApp = angular.module('indexApp', []);
 
 indexApp.controller('IndexController', function ($scope) {
 	$scope.register = function() {
+		mixpanel.track("Register click");
 		$scope.modal = {};
 		$scope.modal.success = false;
 		$scope.modal.message = "Try again later. Sorry for the inconvinence caused.";
