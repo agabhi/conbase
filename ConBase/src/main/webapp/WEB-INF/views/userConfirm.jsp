@@ -24,9 +24,15 @@
     <section id="content" class="no-border">
         <div class="row row-padder" style="padding-top: 40px;background: #F1F0E8;height: 200px;">
             <div class="container">
+                <div class="row">
+                <ul style="margin-left:20px;">
+                            <li class="nav-link"><a  style="color:#b27503;" href="<%=request.getContextPath()%>/">Home</a></li>
+                            <li class="nav-link"><a style="color:#b27503;" href="<%=request.getContextPath()%>/pricing">Pricing</a></li>
+                </ul>
+                </div>
                 <div class="row" style="position: relative;">
                     <div class="col-xs-12 text-center" style="">
-                        <img src="<%=request.getContextPath()%>/assets/img/logo2.png"/>
+                        <img src="<%=request.getContextPath()%>/assets/img/logodark.png"/>
                     </div>
                     <div class="col-xs-12" style="position: absolute;top:110px">
                         <div class="col-sm-5 signup-box" style="margin: auto;float:none;padding: 20px;">
@@ -53,14 +59,12 @@
 
     <script src="<%=request.getContextPath()%>/assets/js/jquery-1.9.1.min.js"></script>
     <script src="<%=request.getContextPath()%>/assets/js/bootstrap.min.js"></script>
-
-    <script src="<%=request.getContextPath()%>/assets/js/jquery.handsontable.full.js"></script>
-    <script src="<%=request.getContextPath()%>/assets/js/custom/main.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/custom/main.js"></script>
 </div>
 <footer id="footer">
     <div class="container">
-        <img src="<%=request.getContextPath()%>/assets/img/logo2.png" height="40"/>
-        &copy; Copyright ConBase 2013 | All Rights Reserved
+        <img src="<%=request.getContextPath()%>/assets/img/logodark.png" height="40"/>
+        &copy; infraCMS 2014 | All Rights Reserved
     </div>
 </footer>
 </body>

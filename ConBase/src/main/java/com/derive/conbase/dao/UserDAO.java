@@ -49,6 +49,16 @@ public class UserDAO extends ConbaseDatabaseDAO<User> {
 		this.jdbcTemplate.update(preparedStatementCreator, holder);
 		user.setId(holder.getKey().longValue());
 		
+		final String projectSql = "SELECT projectId from project_pending_invite WHERE email = ?";
+		List<Long> projectIds = this.jdbcTemplate.queryForList(projectSql, new Object[] { user.getEmail()}, Long.class);
+		if (CollectionUtils.isNotEmpty(projectIds)) {
+			final String insertProjectSql = "insert into project_user (projectId, userId, createdOn) values (?, ?, ?)";
+			for (Long projectId : projectIds) {
+				this.jdbcTemplate.update(insertProjectSql, new Object[] {projectId, user.getId(),  new java.sql.Date(new Date().getTime())});
+			}
+		}
+		
+		
 	}
 	
 	public User findUserByEmailId(String emailId) {

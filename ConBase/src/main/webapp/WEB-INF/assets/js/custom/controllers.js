@@ -135,7 +135,7 @@ userHomeApp.controller('UserHomeController', function ($scope, parameter) {
 	
 	$scope.createProject = function() {
 		$scope.navController.push("Create Project", function() {
-			//refresh layers
+			$scope.getAllOwnedProjects();
 		});
 	};
 	
@@ -183,6 +183,7 @@ userHomeApp.controller('CreateProjectController', function ($scope, parameter) {
 				  success: function(data) {
 					  if (data.success) {
 						  $scope.navController.pop(data.output);
+						  showSuccessMessage("Success! Project created successfully..");
 					  } else {
 						  if (data.messages && data.messages.length > 0) {showErrorMessage(data.messages[0]);}
 					  }
@@ -267,22 +268,44 @@ userHomeApp.controller('ViewProjectDetailsController', function ($scope, $modal,
 	$scope.getProject();
 	
 	$scope.inviteUsers = function() {
-		var modalInstance = $modal.open({
-			templateUrl : 'InviteUserTemplate',
-			controller : 'InviteUserController',
-			resolve : {
-				projectId : function() {
-					return $scope.projectId;
+		var allowedUsers = 1;
+		var noOfUsers = 1;
+		if ($scope.project.allowedUsers && $scope.project.allowedUsers > 1) {
+			allowedUsers = $scope.project.allowedUsers;
+		}
+		if ($scope.project.invitedUsers && $scope.project.invitedUsers.length > 0) {
+			noOfUsers += $scope.project.invitedUsers.length;
+		}
+		if (noOfUsers < allowedUsers) {
+			var modalInstance = $modal.open({
+				templateUrl : 'InviteUserTemplate',
+				controller : 'InviteUserController',
+				resolve : {
+					projectId : function() {
+						return $scope.projectId;
+					}
 				}
-			}
-		});
-		modalInstance.result.then(function(status) {
-			if(status && status == "added") {
-				$scope.getProject();
-			}
-		});
+			});
+			modalInstance.result.then(function(status) {
+				if(status && status == "added") {
+					$scope.getProject();
+				}
+			});
+		} else {
+			var modalInstance = $modal.open({
+				templateUrl : 'CannotAddUsersTemplate',
+				controller : 'CannotAddUsersController'
+				
+			});
+		}
 	};
 });
+
+userHomeApp.controller('CannotAddUsersController', function ($scope, $modalInstance, parameter) {
+	$scope.close = function() {
+		$modalInstance.dismiss();
+	};
+}); 
 
 userHomeApp.controller('InviteUserController', function ($scope, $modalInstance, projectId, parameter) {
 	$scope.invitedUser = {};
@@ -303,7 +326,8 @@ userHomeApp.controller('InviteUserController', function ($scope, $modalInstance,
 							  $modalInstance.close("added");
 						  }
 						  if (data.output == "pending") {
-							  showSuccessMessage("Success! This user is not yet registered in Conbase. An email invite has been sent to the user. User will be added to the project automatically upon registration.");  
+							  showSuccessMessage("Success! This user is not yet registered in Conbase. An email invite has been sent to the user. User will be added to the project automatically upon registration.");
+							  $modalInstance.close("pending");
 						  }
 					  }
 				  } else {
@@ -1264,6 +1288,7 @@ layersApp.controller('AddAttributeController', function ($scope, $modal, paramet
 					  if (data.success) {
 						  result.selectedAttribute = data.output;
 						  $scope.navController.pop(result);
+						  showSuccessMessage("Success! Attribute added successfully..");
 						} else {
 						  if (data.messages && data.messages.length > 0) {showErrorMessage(data.messages[0]);}
 					  }
@@ -2249,6 +2274,7 @@ recordTypesApp.controller('EditRecordTypeController', function ($scope, paramete
 			  success: function(data) {
 				  if (data.success) {
 					  $scope.navController.pop("edited");
+					  showSuccessMessage("Success! Record type updated successfully..");
 				  } else {
 					  if (data.messages && data.messages.length > 0) {showErrorMessage(data.messages[0]);}
 				  }
@@ -3203,6 +3229,7 @@ recordTypesApp.controller('EditRecordController', function ($scope, $http, dataS
 				  success: function(data) {
 					  if (data.success) {
 						  $scope.navController.pop("edited");
+						  showSuccessMessage("Success! Record updated successfully..");
 					  } else {
 						  if (data.messages && data.messages.length > 0) {showErrorMessage(data.messages[0]);}
 					  }
@@ -3430,6 +3457,7 @@ recordTypesApp.controller('AddRecordController', function ($scope, $http, dataSe
 				  success: function(data) {
 					  if (data.success) {
 						  $scope.navController.pop();
+						  showSuccessMessage("Success! Record added successfully..");
 					  } else {
 						  if (data.messages && data.messages.length > 0) {showErrorMessage(data.messages[0]);}
 					  }
@@ -3958,6 +3986,7 @@ layersApp.controller('EditStructureItemController', function ($scope, $modal, pa
 				  success: function(data) {
 					  if (data.success) {
 						  $scope.navController.pop("edited");
+						  showSuccessMessage("Success! Item updated successfully..");
 					  } else {
 						  if (data.messages && data.messages.length > 0) {showErrorMessage(data.messages[0]);}
 					  }
@@ -3997,6 +4026,7 @@ layersApp.controller('AddStructureItemController', function ($scope, parameter) 
 				  success: function(data) {
 					  if (data.success) {
 						  $scope.navController.pop(data.output);
+						  showSuccessMessage("Success! Item added successfully..");
 					  } else {
 						  if (data.messages && data.messages.length > 0) {showErrorMessage(data.messages[0]);}
 					  }

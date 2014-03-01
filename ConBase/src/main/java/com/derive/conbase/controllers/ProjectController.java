@@ -166,6 +166,7 @@ public class ProjectController {
 							ElasticEmail.sendElasticEmail("admin@infracms.com", "infraCMS - admin", subject, message.toString(), email);
 							output.setOutput("complete");
 						} else {
+							projectService.addProjectForRegistration(email, projectId);
 							String subject = "infraCMS - You have been added to the project - "+project.getName()+".";
 							StringBuffer message = new StringBuffer();
 							message.append("<p>Dear User,</p>");

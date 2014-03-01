@@ -37,4 +37,8 @@ public class ProjectService {
 	public void removeUserFromProject(final Long userId, final Long projectId) {
 		projectDAO.removeUserFromProject(userId, projectId);
 	}
+	
+	public void addProjectForRegistration(final String email, final Long projectId) {
+		projectDAO.addProjectForRegistration(email, projectId);
+	}
 }

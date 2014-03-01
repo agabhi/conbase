@@ -43,7 +43,7 @@ public class ProjectDAO extends ConbaseDatabaseDAO<Project> {
 			project.setDescription(rs.getString("description"));
 			project.setActive(rs.getBoolean("active"));
 			project.setCreatedOn(rs.getDate("createdOn"));
-			
+			project.setAllowedUsers(rs.getShort("allowedUsers"));
 			User user = new User();
 			user.setId(rs.getLong("userId"));
 			user.setFullName(rs.getString("fullName"));
@@ -125,6 +125,24 @@ public class ProjectDAO extends ConbaseDatabaseDAO<Project> {
 				ps.setLong(1, projectId);
 				ps.setLong(2, userId);
 				ps.setDate(3, new java.sql.Date(new Date().getTime()));
+				return ps;
+			}
+		};
+
+		this.jdbcTemplate.update(preparedStatementCreator);
+	}
+	
+	public void addProjectForRegistration(final String email, final Long projectId) {
+		final String sql = "insert into project_pending_invite (projectId, email) values (?, ?)";
+		PreparedStatementCreator preparedStatementCreator = new PreparedStatementCreator() {
+
+			@Override
+			public PreparedStatement createPreparedStatement(
+					Connection connection) throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(
+						sql.toString());
+				ps.setLong(1, projectId);
+				ps.setString(2, email);
 				return ps;
 			}
 		};

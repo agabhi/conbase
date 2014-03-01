@@ -17,6 +17,7 @@ public class Project {
 	private List<User> invitedUsers;
 	private Date createdOn;
 	private Boolean active;
+	private Short allowedUsers;
 	
 	public String getName() {
 		return name;
@@ -74,6 +75,12 @@ public class Project {
 		}
 		resultMap.put(status, messages);
 		return resultMap;
+	}
+	public Short getAllowedUsers() {
+		return allowedUsers;
+	}
+	public void setAllowedUsers(Short allowedUsers) {
+		this.allowedUsers = allowedUsers;
 	}
 	
 }

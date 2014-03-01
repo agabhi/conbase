@@ -195,7 +195,7 @@
 		      </table>
 			</div>
 	  		<button type="button" ng-click="back()" class="btn btn-default">Go back</button>
-			<button ng-if="isProjectOwner()" type="button" class="btn btn-default" ng-click="inviteUsers()" >Invite Users</button>
+			<button ng-if="isProjectOwner() && project.active" type="button" class="btn btn-default" ng-click="inviteUsers()" >Invite Users</button>
 			<button type="button" ng-click="editProject()" class="btn btn-danger">Edit</button>
 		</form>
 		</div>
@@ -227,6 +227,22 @@
       </div>
     </div>
 
+</script>
+
+<script type="text/ng-template" class="template" id="CannotAddUsersTemplate">
+<!-- Modal -->
+<div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Invite Users</h4>
+      </div>
+      <div class="modal-body">
+        You have reached the maximum number of users for this project. Please upgrade your plan to add more users.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="close()">Close</button>
+      </div>
+    </div>
 </script>
 
 <script type="text/ng-template" class="template" id="RemoveUserTemplate">
