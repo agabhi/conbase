@@ -21,20 +21,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.derive.conbase.logging.ConbaseLogger;
 import com.derive.conbase.model.ConbaseOutput;
 import com.derive.conbase.model.Project;
 import com.derive.conbase.model.User;
 import com.derive.conbase.service.ProjectService;
 import com.derive.conbase.service.UserService;
+import com.derive.conbase.util.ElasticEmail;
 import com.derive.conbase.util.EmailSender;
 
 @Controller
 public class UserController {
+	
+	protected static final ConbaseLogger logger = ConbaseLogger.getLogger(UserController.class);
+	
 	@Autowired
 	private UserService userService;
 
 	@Autowired
 	private ProjectService projectService;
+	
+	  
 	
 	@Transactional
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -44,7 +51,7 @@ public class UserController {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(
 				DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		User user = mapper.readValue(requestString, User.class);
+		final User user = mapper.readValue(requestString, User.class);
 		
 		Map<Boolean, List<String>> validateMap = user.validate();
 		if (validateMap.get(true) != null) {
@@ -59,7 +66,7 @@ public class UserController {
 				userService.register(user);
 				output.setSuccess(true);
 				
-				StringBuffer message = new StringBuffer("");
+				final StringBuffer message = new StringBuffer("");
 				
 				message.append("Dear ").append(user.getFullName()).append(",<p style='margin-top:10px;'>Congratulations! You have successfully registered for infraCMS. Please activate your account by clicking on the link below. If the link is not working, you can copy the below url address in your browser.</p>");
 				message.append("<p style='margin-top:10px;'><a href='http://www.infracms.com/confirmuser?id="+user.getConfirmationIdentifier()+"'>Click here to activate</a></p>");
@@ -68,7 +75,17 @@ public class UserController {
 				message.append("<p style='margin-top:10px;margin-bottom:0px;'>Best Wishes,</p><p>infraCMS Team</p>");
 				
 				
-				new EmailSender().sendMail(new String[] {user.getEmail()}, "Welcome to infraCMS!!",message.toString());
+				new Thread(new Runnable() {
+				    public void run() {
+				    	try {
+							//new EmailSender().sendMail(new String[] {user.getEmail()}, "Welcome to infraCMS!!",message.toString());
+				    		ElasticEmail.sendElasticEmail("admin@infracms.com", "infraCMS - admin", "Welcome to infraCMS!!", message.toString(), user.getEmail());
+						} catch (Exception e) {
+							logger.error("Error occured while sending email to user " + user.getEmail());
+						}
+				    }
+				}).start();
+				
 			}
 		} else {
 			output.setSuccess(false);

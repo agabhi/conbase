@@ -56,19 +56,19 @@ mixpanel.init("6411320877c544bbe9300a582363f525");</script><!-- end Mixpanel -->
                             <div class="form-group">
                                 <input type="text" class="form-control" id="fullName" name="fullName"
                                        placeholder="Your Fullname" ng-model="user.fullName" style="height:60px;font-size: 16px;" required>
-                                <div class="error" ng-show="showValidationErrors && registrationForm.fullName.$error.required">Fullname is required.</div>
+                                <div class="error" ng-show="showValidationErrors && registrationForm.fullName.$error.required" id="fullNameError"></div>
                             </div>
                             <div class="form-group">
                                 <input type="email" ng-model="user.email" class="form-control" name="email"
                                        placeholder="Enter email" style="height:60px;font-size: 16px;" required>
-                                <div class="error" ng-show="showValidationErrors && registrationForm.email.$error.required">Email is required.</div>
-                                <div class="error" ng-show="showValidationErrors && registrationForm.email.$error.email">Not a valid email.</div>
+                                <div class="error" ng-show="showValidationErrors && registrationForm.email.$error.required"  id="emailReqError"></div>
+                                <div class="error" ng-show="showValidationErrors && registrationForm.email.$error.email" id="emailInvalidError"></div>
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" name="password"
                                        placeholder="Password" ng-model="user.password" style="height:60px;font-size: 16px;" ng-minlength="6" required>
-                                <div class="error" ng-show="showValidationErrors && registrationForm.password.$error.required">Password is required.</div>
-                                <div class="error" ng-show="showValidationErrors && registrationForm.password.$error.minlength">Password should have atleast 6 characters.</div>
+                                <div class="error" ng-show="showValidationErrors && registrationForm.password.$error.required" id="passReqError"></div>
+                                <div class="error" ng-show="showValidationErrors && registrationForm.password.$error.minlength" id="passLengthError"></div>
                             </div>
                             <button type="button" ng-click="register()" class="btn btn-warning btn-lg btn-block" style="height:60px;font-size: 18px;">Get Started For Free</button>
                             <h6>Works on IE9 & above, Mozilla, Chrome, Safari & Opera</h6>
@@ -159,6 +159,12 @@ indexApp.controller('IndexController', function ($scope) {
 		$scope.modal.success = false;
 		$scope.modal.message = "Try again later. Sorry for the inconvinence caused.";
 		$scope.showValidationErrors = true;
+		$("#fullNameError").html("Fullname is required.");
+		$("#emailReqError").html("Email is required.");
+		$("#emailInvalidError").html("Not a valid email.");
+		$("#passReqError").html("Password is required.");
+		$("#passLengthError").html("Password should have atleast 6 characters.");
+		
 		var url = "register";
 		if (!$scope.registrationForm.$invalid) {
 			$scope.showValidationErrors = false;

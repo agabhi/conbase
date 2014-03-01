@@ -26,6 +26,7 @@ import com.derive.conbase.model.Project;
 import com.derive.conbase.model.User;
 import com.derive.conbase.service.ProjectService;
 import com.derive.conbase.service.UserService;
+import com.derive.conbase.util.ElasticEmail;
 import com.derive.conbase.util.EmailSender;
 import com.derive.conbase.util.EmailUtil;
 
@@ -161,7 +162,8 @@ public class ProjectController {
 							message.append("<p>To work on the project, please go to your infraCMS home page and click on the Project->Go button.</p>");
 							message.append("<p style='margin-top:10px;margin-bottom:0px;'>Best wishes,</p>");
 							message.append("<p>infraCMS Team</p>");
-							new EmailSender().sendMail(new String[] {email}, subject, message.toString());
+							//new EmailSender().sendMail(new String[] {email}, subject, message.toString());
+							ElasticEmail.sendElasticEmail("admin@infracms.com", "infraCMS - admin", subject, message.toString(), email);
 							output.setOutput("complete");
 						} else {
 							String subject = "infraCMS - You have been added to the project - "+project.getName()+".";
@@ -171,7 +173,8 @@ public class ProjectController {
 							message.append("<p>To work on the project, you need to register on http://www.infracms.com. After registering, please go to your infraCMS home page and click on the Project->Go button.</p>");
 							message.append("<p style='margin-top:10px;margin-bottom:0px;'>Best wishes,</p>");
 							message.append("<p>infraCMS Team</p>");
-							new EmailSender().sendMail(new String[] {email}, subject, message.toString());
+							//new EmailSender().sendMail(new String[] {email}, subject, message.toString());
+							ElasticEmail.sendElasticEmail("admin@infracms.com", "infraCMS - admin", subject, message.toString(), email);
 							output.setOutput("pending");
 						}
 					}
