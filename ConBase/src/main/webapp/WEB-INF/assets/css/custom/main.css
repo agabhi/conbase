@@ -261,7 +261,7 @@ header.navbar {
 }
 
 .home-center-box {
-    background-image: url("../img/barchart1.png");
+    background-image: url("../../img/barchart1.png");
     min-height:616px;
 }
 
@@ -546,18 +546,18 @@ select.form-control {
 }
 
 .component-image-border-box {
-	background: url("../img/box-border.png");	
+	background: url("../../img/box-border.png");	
 }
 
 button.minus, button.plus {
 	width: 17px;
 	height: 17px;
 	border: 0;
-	background: url(../img/iminus.png) no-repeat;
+	background: url(../../img/iminus.png) no-repeat;
 }
 
 button.plus {
-	background-image: url(../img/iplus.png);
+	background-image: url(../../img/iplus.png);
 }
 
 header.navbar.home-page-header {
@@ -606,4 +606,8 @@ table.pricing-table tbody td {
 table.pricing-table tbody tr.price td {
 	font-size: 120%;
 	color: #4d8fb8;
+}
+
+.bluebkg {
+	background: transparent url("../../img/bluebkg.png") top left;
 }

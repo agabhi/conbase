@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/bootstrap.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/custom-theme/jquery-ui-1.10.0.custom.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/main.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/custom/main.css">
 <body>
 
 <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
@@ -27,7 +27,7 @@ b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
 mixpanel.init("6411320877c544bbe9300a582363f525");</script><!-- end Mixpanel -->
 
 
-<div id="wrap" style="background: transparent url(https://www.assembla.com/assets/home_featured_bg-aceeaee1e58c9c6302ada1673384cf7d.png) top left;">
+<div id="wrap" class="bluebkg">
     <section id="content" class="no-border">
         <div class="row row-padder" style="padding-top: 40px;background: #F1F0E8;height: 200px;">
             <div class="container">
@@ -138,7 +138,7 @@ mixpanel.init("6411320877c544bbe9300a582363f525");</script><!-- end Mixpanel -->
     <script src="<%=request.getContextPath()%>/assets/js/bootstrap.min.js"></script>
 
     <script src="<%=request.getContextPath()%>/assets/js/jquery.handsontable.full.js"></script>
-    <script src="<%=request.getContextPath()%>/assets/js/main.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/custom/main.js"></script>
 </div>
 <footer id="footer">
     <div class="container">

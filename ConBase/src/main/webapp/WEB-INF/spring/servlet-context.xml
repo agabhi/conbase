@@ -21,6 +21,13 @@
 			<property name="useExpiresHeader" value="true" />
 			<property name="useCacheControlHeader" value="true" />
 			<property name="useCacheControlNoStore" value="true" />
+			<property name="cacheMappings">
+          		<props>
+            		<prop key="/assets/js/custom/**">1</prop>
+            		<prop key="/assets/css/custom/**">1</prop>
+            		<prop key="/assets/**">86400</prop>
+            	</props>
+        	</property>
 		</bean>
 		<bean id="localeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
 		<bean id="sessionManagementInterceptor" class="com.derive.conbase.interceptor.SessionManagementInterceptor"/>

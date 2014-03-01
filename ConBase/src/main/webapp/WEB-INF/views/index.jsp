@@ -148,7 +148,7 @@ mixpanel.init("6411320877c544bbe9300a582363f525");</script><!-- end Mixpanel -->
 <script src="<%=request.getContextPath()%>/assets/js/jquery-1.9.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/assets/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/assets/js/angular.min.js"></script>
-<script src="<%=request.getContextPath()%>/assets/js/main.js"></script>
+<script src="<%=request.getContextPath()%>/assets/js/custom/main.js"></script>
 <script>
 var indexApp = angular.module('indexApp', []);
 

@@ -17,7 +17,7 @@
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/font-awesome.min.css">
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/custom-theme/jquery-ui-1.10.0.custom.css">
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/ui.jqgrid.css">
-		<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/main.css">
+		<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/custom/main.css">
 	</head>
 	
 	

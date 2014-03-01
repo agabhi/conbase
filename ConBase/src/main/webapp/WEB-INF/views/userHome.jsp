@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page import="com.derive.conbase.security.User, org.springframework.security.core.context.SecurityContextHolder" %>
 <body ng-app="UserHomeApp" ng-controller="UserHomeController">
 
@@ -7,18 +8,17 @@
                <li class="pull-right" style="padding-right: 10px;"><a style="color:white" href="<%=request.getContextPath() %>/userHome">Home</a></li>
            </ul>
            <ul class="pull-right clearfix" style="margin: 0px;">
-               <li class="pull-right" style="padding-left: 10px;">Logout</li>
-               <li class="pull-right" style="padding-left: 10px;"><span class="glyphicon glyphicon-cog"></span>
-                   Settings
-               </li>
+               <sec:authorize ifNotGranted="ROLE_ANONYMOUS">
+               <li class="pull-right" style="padding-left: 10px;"><a style="color:white" href="<%=request.getContextPath() %>/j_spring_security_logout">Logout</a></li>
                <li class="pull-right" style="padding-left: 10px;"><span class="glyphicon glyphicon-user"></span>
-                   Abhishek Agarwal
+                   <%=((com.derive.conbase.security.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser().getFullName()%>
                </li>
+               </sec:authorize>
            </ul>
        </div>
-       <h1>Welcome Abhishek Agarwal!</h1>
+       <h1>Welcome <%=((com.derive.conbase.security.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser().getFullName()%>!</h1>
 </header>
-<section id="content" class="content-sidebar no-border">
+<section id="content" class="content-sidebar no-border" ng-cloak>
     <div class="row row-padder" style="margin:20px 0px;">
         <div ng-show="navController.currentScreen() == 'Home'">
         		<div class="panel panel-default">

@@ -18,9 +18,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/bootstrap.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/custom-theme/jquery-ui-1.10.0.custom.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/main.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/custom/main.css">
 <body>
-<div id="wrap" style="background: transparent url(https://www.assembla.com/images/home_featured_bg.png?1388086700) top left;">
+<div id="wrap" class="bluebkg">
     <section id="content" class="no-border">
         <div class="row row-padder" style="padding-top: 40px;background: #F1F0E8;height: 200px;">
             <div class="container">
@@ -55,7 +55,7 @@
     <script src="<%=request.getContextPath()%>/assets/js/bootstrap.min.js"></script>
 
     <script src="<%=request.getContextPath()%>/assets/js/jquery.handsontable.full.js"></script>
-    <script src="<%=request.getContextPath()%>/assets/js/main.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/custom/main.js"></script>
 </div>
 <footer id="footer">
     <div class="container">
