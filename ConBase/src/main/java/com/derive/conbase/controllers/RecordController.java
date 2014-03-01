@@ -152,7 +152,7 @@ public class RecordController {
 		List<RecordTypeAttribute> recordTypeAttributes = recordType
 				.getCustomAttributes();
 		gridModel.setRecordTypeAttributes(recordTypeAttributes);
-		gridModel.setLayerAttributes(attributeService.getAttributes());
+		gridModel.setLayerAttributes(attributeService.getAttributesByType(recordType.getType()));
 		gridModel.setRecords(recordService.getRecordsByPage(recordTypeId, pageNumber,
 				50, search));
 		gridModel.setTotalRecords(recordService.getRecordsCount(recordTypeId, search));

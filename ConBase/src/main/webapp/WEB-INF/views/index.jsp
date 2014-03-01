@@ -178,7 +178,7 @@ indexApp.controller('IndexController', function ($scope) {
 			  success: function(data) {
 				  if (data.success) {
 				  		$scope.modal.success = true;
-				  		$scope.modal.message = "Congratulations! You have been successfully registered. Please check your email to activate your account.";
+				  		$scope.modal.message = "Congratulations! You have been successfully registered.";
 				  		$('#myModal').modal();
 				  } else {
 					  $scope.modal.error = true;

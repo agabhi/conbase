@@ -458,9 +458,9 @@
 		        </thead>
 		        <tbody>
 		          <tr ng-repeat="recordTypeAttribute in recordType.customAttributes">
-		            <td>{{$index+1}}</td>
-		            <td>{{recordTypeAttribute.name}}</td>
-		            <td>{{recordTypeAttribute.type}}</td>
+		            <td ng-bind="$index+1"></td>
+		            <td ng-bind="recordTypeAttribute.name"></td>
+		            <td ng-bind="(recordTypeAttribute.type == 1 && 'Option' || (recordTypeAttribute.type == 2 && 'String' || (recordTypeAttribute.type == 3 && 'Text' || (recordTypeAttribute.type == 4 && 'Integer' || (recordTypeAttribute.type == 5 && 'Decimal' || '')))))"></td>
 					<td>
 		            	<span ng-repeat="option in recordTypeAttribute.options track by $index" ng-bind="$index == 0 && option || (', '+option)"></span> 
 		            </td>
@@ -597,7 +597,7 @@
 					</div>
 				</div>
 			</div>
-			 <pagination total-items="totalRecords" page="currentPage" items-per-page="50" on-select-page="changePage(page)"></pagination>
+			 <pagination ng-hide="showSearch" total-items="totalRecords" page="currentPage" items-per-page="50" on-select-page="changePage(page)"></pagination>
 
 			<table class="table table-bordered table-hover table-striped" ng-hide="showSearch">
 				<thead>
@@ -610,7 +610,7 @@
 						<th ng-if="recordType.type == 2">Structure</th>
 						<th ng-if="recordType.type == 2">Item</th>
 						<th ng-repeat = "recordTypeAttribute in grid.recordTypeAttributes" ng-bind="recordTypeAttribute.name"></th>
-						<th  ng-if="recordType.type == 1" ng-repeat = "layerAttribute in grid.layerAttributes" ng-bind="layerAttribute.name"></th>
+						<th  ng-if="recordType.type == 1 || recordType.type == 2" ng-repeat = "layerAttribute in grid.layerAttributes" ng-bind="layerAttribute.name"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -623,7 +623,7 @@
 						<td ng-if="recordType.type == 2" ng-bind="structuresMap[record.structure.id].name"></td>
 						<td ng-if="recordType.type == 2" ng-bind="structureItemsMap[record.layerAttributeConfig.layer.id].name"></td>
 						<td ng-repeat = "recordTypeAttribute in grid.recordTypeAttributes" ng-bind="record.attributeValuesMap[recordTypeAttribute.id]"></td>
-						<td  ng-if="recordType.type == 1" ng-repeat = "layerAttribute in grid.layerAttributes" ng-bind="record.layerAttributeConfig.attributeValueMap[layerAttribute.id]"></td>
+						<td  ng-if="recordType.type == 1 || recordType.type == 2" ng-repeat = "layerAttribute in grid.layerAttributes" ng-bind="record.layerAttributeConfig.attributeValueMap[layerAttribute.id]"></td>
 					</tr>
 				</tbody>
 			</table>
@@ -794,7 +794,7 @@
 				</div>
 				<div class="form-group" ng-if="record.recordType.type == 2">
 					<label>Item</label>
-					<select name="structureItem" class="form-control" ng-model="record.layerAttributeConfig.layer.id" required ng-options="structureItem.id as structureItem.name for structureItem in structureItems">
+					<select name="structureItem" class="form-control" ng-model="record.layerAttributeConfig.layer.id" ng-change="selectLayer()"  required ng-options="structureItem.id as structureItem.name for structureItem in structureItems">
 							<option value="">--Select--</option>
 					</select>
 					<div class="error" ng-show="showValidationMessages && addRecordForm.structureItem.$error.required">Required.</div>

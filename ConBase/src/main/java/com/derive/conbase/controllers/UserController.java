@@ -79,7 +79,7 @@ public class UserController {
 				    public void run() {
 				    	try {
 							//new EmailSender().sendMail(new String[] {user.getEmail()}, "Welcome to infraCMS!!",message.toString());
-				    		ElasticEmail.sendElasticEmail("admin@infracms.com", "infraCMS - admin", "Welcome to infraCMS!!", message.toString(), user.getEmail());
+				    		//ElasticEmail.sendElasticEmail("admin@infracms.com", "infraCMS - admin", "Welcome to infraCMS!!", message.toString(), user.getEmail());
 						} catch (Exception e) {
 							logger.error("Error occured while sending email to user " + user.getEmail());
 						}

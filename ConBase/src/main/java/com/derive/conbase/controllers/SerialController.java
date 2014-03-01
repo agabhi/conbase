@@ -56,6 +56,7 @@ public class SerialController {
 			if (existingSerial == null) {
 				serialService.addSerial(serial);
 				output.setSuccess(true);
+				output.setOutput(serial);
 			} else {
 				output.setSuccess(false);
 				output.setMessages(Arrays.asList(new String[] {"Serial of same name is already existing!"}));

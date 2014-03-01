@@ -3210,7 +3210,10 @@ recordTypesApp.controller('EditRecordController', function ($scope, $http, dataS
 				$scope.validateRecordTypeAtt(recordTypeAttribute);
 			});
 		}
-		
+		if (jQuery.isEmptyObject($scope.recordTypeCustomErrors) && jQuery.isEmptyObject($scope.recordTypeLayerErrors)) {
+		} else {
+			errorsFound = true;
+		}
 		return errorsFound;
 	};
 	
@@ -3437,6 +3440,10 @@ recordTypesApp.controller('AddRecordController', function ($scope, $http, dataSe
 			$.each($scope.record.recordType.layerAttributes, function( index, recordTypeAttribute ) {
 				$scope.validateRecordTypeAtt(recordTypeAttribute);
 			});
+		}
+		if (jQuery.isEmptyObject($scope.recordTypeCustomErrors) && jQuery.isEmptyObject($scope.recordTypeLayerErrors)) {
+		} else {
+			errorsFound = true;
 		}
 		
 		return errorsFound;
